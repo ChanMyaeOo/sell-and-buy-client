@@ -1,11 +1,12 @@
-import React from 'react'
+import React from "react";
+import "./App.css";
+import Navbar from './components/Navbar/Navbar';
+
 
 const App = () => {
     return (
-        <div>
-            Sell and Buy App   
-        </div>
-    )
-}
+        <Navbar />
+    );
+};
 
-export default App
+export default App;
