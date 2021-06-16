@@ -19,6 +19,9 @@ const styles = makeStyles((theme) => ({
         fontSize: "70px",
         fontWeight: "bold",
         color: "#f2f2f2",
+        [theme.breakpoints.down("sm")]: {
+            fontSize: "45px",
+        }
     },
     heroButton: {
         marginTop: "45px",
