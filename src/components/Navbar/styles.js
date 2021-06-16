@@ -2,7 +2,6 @@ import { makeStyles, fade } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
-        height: "65px",
         backgroundColor: "#16252b"
     },
     menuButton: {
