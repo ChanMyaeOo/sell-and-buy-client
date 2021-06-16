@@ -12,7 +12,7 @@ const Navbar = () => {
     const classes = useStyles();
     return (
         <div className={classes.root}>
-            <AppBar position="static" className={classes.appBar}>
+            <AppBar position="fixed" className={classes.appBar}>
                 <Toolbar className={classes.toolbar}>
                     <div className={classes.menu}>
                         <Typography variant="h6" className={classes.title}>

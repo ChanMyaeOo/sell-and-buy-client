@@ -9,7 +9,7 @@ const styles = makeStyles((theme) => ({
         backgroundPositionY: "16%",
         backgroundSize: "cover",
         width: "100%",
-        height: 'calc(100vh - 65px)',
+        height: "100vh",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",

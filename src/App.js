@@ -1,18 +1,20 @@
 import React from "react";
 import { Grid } from '@material-ui/core';
-import "./App.css";
 import Navbar from './components/Navbar/Navbar';
 import Hero from "./components/Hero/Hero";
 import Items from './components/Items/Items';
 import Form from './components/Form/Form'
+import useStyles from './styles'
+import "./App.css";
 
 
 const App = () => {
+    const classes = useStyles();
     return (
         <>
             <Navbar />
             <Hero />
-            <Grid container style={{ marginTop: "20px"}} >
+            <Grid container className={classes.itemsWrapper}>
                 <Grid item lg={9} md={9} sm={8} xs={12}>
                     <Items />
                 </Grid>

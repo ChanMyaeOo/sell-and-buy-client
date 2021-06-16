@@ -6,7 +6,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import Image from '../../../images/apples.jpg'
 import useStyles from './styles'
 
-const Item = () => {
+const Item = ({ description }) => {
     const classes = useStyles();
     return (
         <Card className={classes.root}>
@@ -30,7 +30,7 @@ const Item = () => {
             <CardContent>
                 <Typography variant="h1" className={classes.contentTitle}>Apples</Typography>
                 <Divider className={classes.divider} />
-                <Typography className={classes.contentDescription}>I have very delicious apples. It is also cheap.</Typography>
+                <Typography className={classes.contentDescription}>{description}</Typography>
                 <Typography className={classes.phone} ><PhoneAndroidIcon color="primary"/> 09976543871</Typography>
                 <Typography className={classes.address}><HomeIcon color="primary"/> Mandalay</Typography>
             </CardContent>
