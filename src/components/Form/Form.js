@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Grid, TextField, Typography, Button } from "@material-ui/core";
-import FileBase from "react-file-base64";
+import FileBase64 from "react-file-base64";
 import { useDispatch } from "react-redux";
 import { createItem } from "../../actions/items";
 import useStyles from "./styles";
@@ -30,7 +30,6 @@ const Form = () => {
             description: "",
             phnumber: "",
             location: "",
-            selectedFile: "",
         });
     };
     return (
@@ -102,13 +101,12 @@ const Form = () => {
                         />
 
                         <div className={classes.formFields}>
-                            <FileBase
+                            <FileBase64
                                 type="file"
                                 multiple={false}
                                 onDone={({ base64 }) =>
                                     setItem({ ...item, selectedFile: base64 })
                                 }
-                                value="hello"
                             />
                         </div>
 

@@ -1,9 +1,20 @@
-const reducers =  (items = [], action) => {
+const initialState = {
+    items: []
+}
+const reducers = (state = initialState, action) => {
     switch (action.type) {
         case 'CREATE_ITEM':
-            return [...items, action.payload]
+            return {
+                ...state,
+                items: [...state.items, action.payload]
+            }
+        case 'FETCH_ITEMS':
+            return {
+                ...state,
+                items: action.payload
+            }
         default:
-            return items
+            return state
     }
 }
 
