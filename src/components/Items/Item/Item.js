@@ -1,14 +1,32 @@
 import React from 'react'
-import { Card, CardHeader, CardMedia, CardContent, Typography, Avatar, IconButton, Divider } from '@material-ui/core'
+import { Card, CardHeader, CardMedia, CardContent, Typography, Avatar, IconButton, Divider, Menu, MenuItem } from '@material-ui/core'
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import PhoneAndroidIcon from '@material-ui/icons/PhoneAndroid';
 import moment from 'moment';
 import HomeIcon from '@material-ui/icons/Home';
 import useStyles from './styles'
 
-const Item = ({ item }) => {
+const Item = ({ item, setCurrentId }) => {
+    const [anchorEl, setAnchorEl] = React.useState(null);
     const classes = useStyles();
     const createdDate = moment(item.createdAt).format("MMM D, YYYY")
+
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    const handleUpdate = () => {
+        setAnchorEl(null);
+        setCurrentId(item._id)
+    }
+
+    const handleDelete = () => {
+        setAnchorEl(null);
+    }
     return (
         <Card className={classes.root}>
             <CardHeader
@@ -16,13 +34,27 @@ const Item = ({ item }) => {
                     <Avatar aria-label="recipe" className={classes.avatar} >R</Avatar>
                 }
                 action={
-                    <IconButton aria-label="settings">
+                    <IconButton aria-label="settings" onClick={handleClick}>
                         <MoreVertIcon />
                     </IconButton>
                 }
                 title={item.name}
                 subheader={createdDate}
             />
+
+            {/* For Menu Item (delete and update) */}
+            <Menu
+                id="simple-menu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+            >
+                <MenuItem onClick={handleUpdate}>Update</MenuItem>
+                <MenuItem onClick={handleDelete}>Delete</MenuItem>
+            </Menu>
+
+            {/* Check image url (selectedFile) exists or not */}
             {
                 item.selectedFile ? (
                     <CardMedia
@@ -43,6 +75,8 @@ const Item = ({ item }) => {
                 <Typography className={classes.phone} ><PhoneAndroidIcon color="primary" />{item.phnumber}</Typography>
                 <Typography className={classes.address}><HomeIcon color="primary" />{item.location}</Typography>
             </CardContent>
+
+
         </Card>
     )
 }

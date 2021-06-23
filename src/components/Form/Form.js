@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Grid, TextField, Typography, Button } from "@material-ui/core";
 import FileBase64 from "react-file-base64";
-import { useDispatch } from "react-redux";
-import { createItem } from "../../actions/items";
+import { useDispatch, useSelector } from "react-redux";
+import { createItem, updateItem } from "../../actions/items";
 import useStyles from "./styles";
 
-const Form = () => {
+const Form = ({ currentId, setCurrentId }) => {
     const classes = useStyles();
     const dispatch = useDispatch();
     const [item, setItem] = useState({
@@ -17,9 +17,21 @@ const Form = () => {
         selectedFile: "",
     });
 
+
+    const itemToUpdate = useSelector(state => currentId ? state.items.items.find(item => item._id === currentId) : null)
+
+
+    useEffect(() => {
+        if (itemToUpdate) setItem(itemToUpdate)
+    }, [itemToUpdate])
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(createItem(item));
+        if (currentId) {
+            dispatch(updateItem(currentId, { ...item }))
+        } else {
+            dispatch(createItem(item));
+        }
         clearForm();
     };
 
@@ -31,6 +43,7 @@ const Form = () => {
             phnumber: "",
             location: "",
         });
+        setCurrentId(null)
     };
     return (
         <div>

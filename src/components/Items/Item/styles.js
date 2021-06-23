@@ -27,7 +27,7 @@ const styles = makeStyles((theme) => ({
     },
     divider: {
         margin: "5px 0px"
-    }
+    },
 }));
 
 export default styles;

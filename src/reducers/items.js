@@ -13,6 +13,11 @@ const reducers = (state = initialState, action) => {
                 ...state,
                 items: action.payload
             }
+        case 'UPDATE_ITEM':
+            return {
+                ...state,
+                items: state.items.map(item => item._id === action.payload._id ? action.payload : item)
+            }
         default:
             return state
     }
