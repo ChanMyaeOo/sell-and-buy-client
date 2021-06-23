@@ -4,12 +4,15 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import PhoneAndroidIcon from '@material-ui/icons/PhoneAndroid';
 import moment from 'moment';
 import HomeIcon from '@material-ui/icons/Home';
+import { useDispatch } from 'react-redux';
+import { deleteItem } from '../../../actions/items'
 import useStyles from './styles'
 
 const Item = ({ item, setCurrentId }) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const classes = useStyles();
     const createdDate = moment(item.createdAt).format("MMM D, YYYY")
+    const dispatch = useDispatch();
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -26,6 +29,7 @@ const Item = ({ item, setCurrentId }) => {
 
     const handleDelete = () => {
         setAnchorEl(null);
+        dispatch(deleteItem(item._id))
     }
     return (
         <Card className={classes.root}>

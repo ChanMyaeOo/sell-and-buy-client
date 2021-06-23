@@ -18,6 +18,11 @@ const reducers = (state = initialState, action) => {
                 ...state,
                 items: state.items.map(item => item._id === action.payload._id ? action.payload : item)
             }
+        case 'DELETE_ITEM':
+            return {
+                ...state,
+                items: state.items.filter(item => item._id !== action.payload)
+            }
         default:
             return state
     }
